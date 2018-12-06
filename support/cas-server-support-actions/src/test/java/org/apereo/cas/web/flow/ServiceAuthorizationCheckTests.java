@@ -72,9 +72,7 @@ public class ServiceAuthorizationCheckTests {
         val mockRequestContext = new MockRequestContext();
         mockRequestContext.getFlowScope().put("service", this.unauthorizedService);
 
-        assertThrows(UnauthorizedServiceException.class, () -> {
-            this.serviceAuthorizationCheck.doExecute(mockRequestContext);
-        });
+        assertThrows(UnauthorizedServiceException.class, () -> this.serviceAuthorizationCheck.doExecute(mockRequestContext));
     }
 
     @Test
@@ -82,8 +80,6 @@ public class ServiceAuthorizationCheckTests {
         val mockRequestContext = new MockRequestContext();
         mockRequestContext.getFlowScope().put("service", this.undefinedService);
 
-        assertThrows(UnauthorizedServiceException.class, () -> {
-            this.serviceAuthorizationCheck.doExecute(mockRequestContext);
-        });
+        assertThrows(UnauthorizedServiceException.class, () -> this.serviceAuthorizationCheck.doExecute(mockRequestContext));
     }
 }

@@ -67,15 +67,9 @@ public abstract class BaseLdapAuthenticationHandlerTests {
     protected Collection<AuthenticationHandler> handler;
 
     @Test
-    public void verifyAuthenticateFailure() throws Throwable {
+    public void verifyAuthenticateFailure() {
         assertNotEquals(handler.size(), 0);
-        assertThrows(FailedLoginException.class, () -> {
-            try {
-                this.handler.forEach(Unchecked.consumer(h -> h.authenticate(new UsernamePasswordCredential("admin", "bad"))));
-            } catch (final Exception e) {
-                throw e.getCause();
-            }
-        });
+        assertThrows(FailedLoginException.class, () -> this.handler.forEach(Unchecked.consumer(h -> h.authenticate(new UsernamePasswordCredential("admin", "bad")))));
     }
 
     @Test
